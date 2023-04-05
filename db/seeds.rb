@@ -7,11 +7,11 @@
 #   Character.create(name: "Luke", movie: movies.first)
 
 10.times do
-    interes = Faker::Hobby.activity
-    Interest.create(name: interes)
+  interes = Faker::Hobby.activity
+  Interest.create(name: interes)
 end
 
 10.times do
-    skill = Faker::Job.key_skill
-    Skill.create(name: skill)
+  skill = Faker::Job.key_skill
+  Skill.create(name: skill)
 end
