@@ -64,3 +64,6 @@ group :development do
   # gem "spring"
 end
 
+gem 'active_interaction', '~> 5.2'
+
+gem 'faker'
