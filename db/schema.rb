@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_05_145724) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_05_145948) do
   create_table "interests", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -21,6 +21,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_05_145724) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "user_interests", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "interest_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["interest_id"], name: "index_user_interests_on_interest_id"
+    t.index ["user_id"], name: "index_user_interests_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -37,4 +46,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_05_145724) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "user_interests", "interests"
+  add_foreign_key "user_interests", "users"
 end
