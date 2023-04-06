@@ -33,5 +33,7 @@ module MyResume
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+
+    config.autoload_paths += Dir["#{root}/app/interactions/**/"]
   end
 end
