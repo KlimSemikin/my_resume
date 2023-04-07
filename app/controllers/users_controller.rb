@@ -12,7 +12,7 @@ class UsersController < ApplicationController
 
   # GET /users/new
   def new
-    @user = User.new
+    @user = CreateUser.new
   end
 
   # GET /users/1/edit
@@ -21,16 +21,13 @@ class UsersController < ApplicationController
 
   # POST /users or /users.json
   def create
-    @user = User.new(user_params)
+    outcome = CreateUser.run(params.fetch(:user, {}))
 
-    respond_to do |format|
-      if @user.save
-        format.html { redirect_to user_url(@user), notice: "User was successfully created." }
-        format.json { render :show, status: :created, location: @user }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
+    if outcome.valid?
+      redirect_to(outcome.result)
+    else
+      @user = outcome
+      render(:new, status: :unprocessable_entity)
     end
   end
 
