@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  enum genders: [:female, :male]
+  enum genders: %i[female male]
 
   has_many :user_interests, dependent: :destroy
   has_many :interests, through: :user_interests

@@ -21,7 +21,7 @@ end
   surname = Faker::Name.last_name
   patronymic = Faker::Name.middle_name
   fullname = "#{surname} #{name} #{patronymic}"
-  email = Faker::Internet.free_email(name: name)
+  email = Faker::Internet.free_email(name:)
   age = rand(20..50)
   nationality = Faker::Nation.nationality
   country = Faker::Address.country
@@ -29,6 +29,6 @@ end
 
   user = User.create(name:, surname:, patronymic:, fullname:, email:, age:, nationality:, country:, gender:)
 
-  user.interests = Interest.order("RANDOM()").limit(5)
-  user.skills = Skill.order("RANDOM()").limit(5)
+  user.interests = Interest.order('RANDOM()').limit(5)
+  user.skills = Skill.order('RANDOM()').limit(5)
 end
