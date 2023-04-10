@@ -67,3 +67,5 @@ end
 gem 'active_interaction', '~> 5.2'
 
 gem 'faker'
+
+gem 'rspec-rails'
