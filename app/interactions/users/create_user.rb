@@ -8,10 +8,7 @@ class CreateUser < ActiveInteraction::Base
   string :gender
   integer :age, default: nil
   array :interests, default: []
-  string :skills, default: '' # Не совсем понял этот момент. С одной стороны было бы логично переделать по аналогии
-                              # с interests т.е чтобы на вход приходил массив skills, а не строка как в условии задания,
-                              # так бы я и сделал, если бы знал, что имею доступ к фронту, чтобы там тоже это поменять,
-                              # однако сделал со строкой, предположив, что не должен менять входные данные.
+  array :skills, default: []
 
   validates :name, :surname, :patronymic, :email, :nationality, :country, :gender, :age, presence: true
   validates :age, numericality: { in: 1..90, only_integer: true }
@@ -26,7 +23,7 @@ class CreateUser < ActiveInteraction::Base
     user = new_user_from_inputs
     user.fullname = full_name
     user.interests = compose(FindInterests, interests_names: interests)
-    user.skills = compose(FindSkillsByString, skills:)
+    user.skills = compose(FindSkills, skills_names: skills)
 
     errors.merge!(user.errors) unless user.save
 

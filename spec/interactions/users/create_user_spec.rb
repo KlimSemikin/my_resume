@@ -51,7 +51,7 @@ describe CreateUser do
   it 'creates with interests, skills' do
     interests = Interest.create([{name: 'Bowling'}, {name: 'Tennis'}])
     skills = Skill.create([{name: 'Stress resistance'}, {name: 'Fast learnability'}])
-    inputs.merge!(good_input_data, interests: %w[Bowling Tennis], skills: 'Stress resistance,Fast learnability' )
+    inputs.merge!(good_input_data, interests: %w[Bowling Tennis], skills: ['Stress resistance', 'Fast learnability'])
     expect(outcome).to be_valid
     expect(result.interests).to match_array(interests)
     expect(result.skills).to match_array(skills)
