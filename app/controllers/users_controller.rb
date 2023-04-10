@@ -1,8 +1,4 @@
 class UsersController < ApplicationController
-  def new
-    @user = CreateUser.new
-  end
-
   def create
     outcome = CreateUser.run(params.fetch(:user, {}))
 
