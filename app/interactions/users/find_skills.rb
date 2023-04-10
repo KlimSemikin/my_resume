@@ -1,10 +1,13 @@
 class FindSkills < ActiveInteraction::Base
-  string :skills_names, default: '' # Не совсем понял этот момент. С одной стороны было бы логично переделать по аналогии
-                                    # с interests т.е чтобы на вход приходил массив skills, а не строка как в условии задания,
-                                    # так бы я и сделал, если бы знал, что имею доступ к фронту, чтобы там тоже это поменять,
-                                    # однако сделал со строкой, предположив, что не должен менять входные данные.
+  array :skills_names
 
   def execute
-    Skill.where(name: skills_names.split(','))
+    find_skills_by_names(skills_names)
+  end
+
+  private
+
+  def find_skills_by_names(names)
+    Skill.where(name: names)
   end
 end

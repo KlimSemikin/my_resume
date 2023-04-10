@@ -26,7 +26,7 @@ class CreateUser < ActiveInteraction::Base
     user = new_user_from_inputs
     user.fullname = full_name
     user.interests = compose(FindInterests, interests_names: interests)
-    user.skills = compose(FindSkills, skills_names: skills)
+    user.skills = compose(FindSkills, skills_names: skills.split(','))
 
     errors.merge!(user.errors) unless user.save
 
